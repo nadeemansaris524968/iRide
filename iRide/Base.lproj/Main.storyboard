@@ -1,0 +1,597 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="rz8-61-hCr">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--iRide-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="iRide" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="6go-vn-vTq">
+                                <rect key="frame" x="0.0" y="64" width="375" height="595"/>
+                            </mapView>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="VVt-bj-tjX">
+                                <rect key="frame" x="87" y="99" width="200" height="29"/>
+                                <segments>
+                                    <segment title="Standard"/>
+                                    <segment title="Satellite"/>
+                                    <segment title="Hybrid"/>
+                                </segments>
+                                <connections>
+                                    <action selector="segmentedControlAction:" destination="BYZ-38-t0r" eventType="valueChanged" id="KEE-Uo-jQs"/>
+                                </connections>
+                            </segmentedControl>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pOH-oB-hTe">
+                                <rect key="frame" x="143" y="502" width="89" height="30"/>
+                                <color key="backgroundColor" red="0.28776574389999998" green="1" blue="0.2537431081" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="89" id="zRJ-jT-3Y0"/>
+                                </constraints>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" title="Start Ride"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="startRide:" destination="BYZ-38-t0r" eventType="touchUpInside" id="abV-8w-qe3"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yDf-hE-UlB">
+                                <rect key="frame" x="143" y="546" width="89" height="30"/>
+                                <color key="backgroundColor" red="0.264387241" green="0.3818408445" blue="0.72312663610000005" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" title="Pause"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.maskToBounds" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="pauseRide:" destination="BYZ-38-t0r" eventType="touchUpInside" id="fTT-G5-NfL"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bA1-jp-v6H">
+                                <rect key="frame" x="143" y="546" width="89" height="30"/>
+                                <color key="backgroundColor" red="0.91764712329999998" green="0.70588237050000002" blue="0.270588249" alpha="1" colorSpace="deviceRGB"/>
+                                <state key="normal" title="Continue">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="continueRide:" destination="BYZ-38-t0r" eventType="touchUpInside" id="DRU-cW-jHR"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CCG-1m-Jj2">
+                                <rect key="frame" x="143" y="502" width="89" height="30"/>
+                                <color key="backgroundColor" red="1" green="0.18479061250000001" blue="0.1090841169" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="End Ride">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="endRide:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0CJ-t5-jID"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="bottomMargin" secondItem="6go-vn-vTq" secondAttribute="bottom" constant="8" id="1lY-aQ-CMH"/>
+                            <constraint firstItem="yDf-hE-UlB" firstAttribute="trailing" secondItem="pOH-oB-hTe" secondAttribute="trailing" id="1qb-k8-v6K"/>
+                            <constraint firstAttribute="trailing" secondItem="6go-vn-vTq" secondAttribute="trailing" id="6dc-nC-1LJ"/>
+                            <constraint firstItem="yDf-hE-UlB" firstAttribute="centerX" secondItem="6go-vn-vTq" secondAttribute="centerX" id="6q0-MZ-c0K"/>
+                            <constraint firstAttribute="bottom" secondItem="pOH-oB-hTe" secondAttribute="bottom" constant="135" id="FHN-FQ-J9b"/>
+                            <constraint firstItem="VVt-bj-tjX" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="35" id="L5X-4e-KOB"/>
+                            <constraint firstItem="VVt-bj-tjX" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="71" id="MX4-sC-wJy"/>
+                            <constraint firstItem="bA1-jp-v6H" firstAttribute="leading" secondItem="yDf-hE-UlB" secondAttribute="leading" id="UPo-sF-STD"/>
+                            <constraint firstItem="6go-vn-vTq" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="cVs-VW-cJg"/>
+                            <constraint firstItem="CCG-1m-Jj2" firstAttribute="baseline" secondItem="pOH-oB-hTe" secondAttribute="baseline" id="dwi-TY-jYL"/>
+                            <constraint firstItem="CCG-1m-Jj2" firstAttribute="trailing" secondItem="pOH-oB-hTe" secondAttribute="trailing" id="fBp-vn-Tfb"/>
+                            <constraint firstItem="bA1-jp-v6H" firstAttribute="baseline" secondItem="yDf-hE-UlB" secondAttribute="baseline" id="fig-YK-O9p"/>
+                            <constraint firstItem="6go-vn-vTq" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="hKW-mV-QFd"/>
+                            <constraint firstItem="yDf-hE-UlB" firstAttribute="leading" secondItem="pOH-oB-hTe" secondAttribute="leading" id="mcA-ON-MMr"/>
+                            <constraint firstItem="CCG-1m-Jj2" firstAttribute="leading" secondItem="pOH-oB-hTe" secondAttribute="leading" id="pRE-Qv-iqj"/>
+                            <constraint firstItem="yDf-hE-UlB" firstAttribute="top" secondItem="pOH-oB-hTe" secondAttribute="bottom" constant="14" id="tId-p3-T8F"/>
+                            <constraint firstItem="pOH-oB-hTe" firstAttribute="centerX" secondItem="VVt-bj-tjX" secondAttribute="centerX" id="v0n-qu-iGf"/>
+                            <constraint firstItem="bA1-jp-v6H" firstAttribute="trailing" secondItem="yDf-hE-UlB" secondAttribute="trailing" id="web-yD-nV2"/>
+                        </constraints>
+                    </view>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="iRide" id="ra2-TP-tAW">
+                        <barButtonItem key="leftBarButtonItem" title="Menu" id="7cc-7s-OFS"/>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="continueRide" destination="bA1-jp-v6H" id="vsk-0h-Lb6"/>
+                        <outlet property="currentLocation" destination="6go-vn-vTq" id="7Tl-Wj-7XN"/>
+                        <outlet property="destinationLocation" destination="6go-vn-vTq" id="dbD-1t-ncb"/>
+                        <outlet property="endRide" destination="CCG-1m-Jj2" id="XWi-an-dEH"/>
+                        <outlet property="pauseRide" destination="yDf-hE-UlB" id="0Zr-1B-Jrs"/>
+                        <outlet property="slideOutMenuButton" destination="7cc-7s-OFS" id="dwB-2L-7iw"/>
+                        <outlet property="startRide" destination="pOH-oB-hTe" id="TNe-u9-YuO"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="689.5" y="444.5"/>
+        </scene>
+        <!--Reveal View Controller-->
+        <scene sceneID="u0c-bu-EfW">
+            <objects>
+                <viewController id="rz8-61-hCr" customClass="SWRevealViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="P2p-Zp-uyC"/>
+                        <viewControllerLayoutGuide type="bottom" id="p6b-KZ-chy"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="AjA-Wp-OY2">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <segue destination="RN2-2M-g4W" kind="custom" identifier="sw_front" customClass="SWRevealViewControllerSegueSetController" id="slO-cK-8ak"/>
+                        <segue destination="e47-eC-qgW" kind="custom" identifier="sw_rear" customClass="SWRevealViewControllerSegueSetController" id="uO8-LR-M4Z"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tmW-jo-4Wg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-303" y="445"/>
+        </scene>
+        <!--Table View Controller-->
+        <scene sceneID="YWC-Qe-MYM">
+            <objects>
+                <tableViewController id="e47-eC-qgW" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="P69-kc-vwV">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <sections>
+                            <tableViewSection id="qIv-rN-uFf">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="S3V-vE-Tix">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="S3V-vE-Tix" id="Pwj-rR-xV8">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Ride Info" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J3c-pG-o7j">
+                                                    <rect key="frame" x="19" y="8" width="68" height="27"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="Yzm-QZ-91r" kind="custom" customClass="SWRevealViewControllerSeguePushController" id="efz-zg-D4r"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="aoW-4y-Our">
+                                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="aoW-4y-Our" id="6Jv-DJ-zMG">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Ride Log" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jfU-8d-4Gi">
+                                                    <rect key="frame" x="19" y="8" width="68" height="27"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="aIo-kA-jMX" kind="custom" customClass="SWRevealViewControllerSeguePushController" id="V2h-bO-FeO"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="WOe-GM-8ix">
+                                        <rect key="frame" x="0.0" y="88" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WOe-GM-8ix" id="1Wl-r5-9GB">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Ride Map" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Su-Np-iUo">
+                                                    <rect key="frame" x="19" y="8" width="73" height="27"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="66w-Gc-Qj3" kind="custom" customClass="SWRevealViewControllerSeguePushController" id="CB7-hg-8Gb"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="23Q-iR-zsM">
+                                        <rect key="frame" x="0.0" y="132" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="23Q-iR-zsM" id="9GT-QW-zm5">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Home" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dCc-1D-uD0">
+                                                    <rect key="frame" x="19" y="8" width="73" height="27"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="RN2-2M-g4W" kind="custom" customClass="SWRevealViewControllerSeguePushController" id="imo-2b-xSz"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="e47-eC-qgW" id="jt2-qK-kYi"/>
+                            <outlet property="delegate" destination="e47-eC-qgW" id="9kN-UR-QsF"/>
+                        </connections>
+                    </tableView>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Xqc-Ip-FeG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-303.5" y="1294.5"/>
+        </scene>
+        <!--Ride Info View Controller-->
+        <scene sceneID="IcM-Qy-I5H">
+            <objects>
+                <viewController title="Ride Info View Controller" id="VEF-MN-Qbp" customClass="RideInfoViewController" customModule="iRide" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="bAr-Wn-lC6"/>
+                        <viewControllerLayoutGuide type="bottom" id="7Hx-rG-Qq9"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="GN1-Vc-BYC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vlb-0M-lSm">
+                                <rect key="frame" x="124" y="135" width="28" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="103" y="143" width="28" height="21"/>
+                                </variation>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="From :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xNO-W4-xOk">
+                                <rect key="frame" x="103" y="92" width="49" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="49" id="aBu-Gb-BXT"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="82" y="91" width="49" height="21"/>
+                                </variation>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="St.Joseph" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vza-zX-s5E">
+                                <rect key="frame" x="174" y="92" width="97" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Omaha" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ouy-QI-0xC">
+                                <rect key="frame" x="174" y="135" width="55" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Distance Travelled: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cIW-GG-Cm7">
+                                <rect key="frame" x="77" y="187" width="150" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5.6 miles" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mlX-3d-KBd">
+                                <rect key="frame" x="229" y="187" width="69" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time Taken: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sz5-9z-dhg">
+                                <rect key="frame" x="95" y="229" width="168" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="34 min 29 sec" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qwU-mv-F6i">
+                                <rect key="frame" x="198" y="229" width="110" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Average Speed:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s9r-qb-F9Y">
+                                <rect key="frame" x="95" y="269" width="127" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date Of Ride:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Mt-rj-7o2">
+                                <rect key="frame" x="88" y="311" width="102" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="02/15/2016" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vS3-pT-AAZ">
+                                <rect key="frame" x="198" y="311" width="88" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MFL-QZ-wxs">
+                                <rect key="frame" x="158" y="355" width="59" height="30"/>
+                                <state key="normal" title="Log This"/>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="159" y="348" width="59" height="30"/>
+                                </variation>
+                                <connections>
+                                    <action selector="logThisBTN:" destination="VEF-MN-Qbp" eventType="touchUpInside" id="7HA-I5-8G6"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12 mph" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gQr-Ms-Hdp">
+                                <rect key="frame" x="225" y="269" width="56" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="vlb-0M-lSm" firstAttribute="top" secondItem="xNO-W4-xOk" secondAttribute="bottom" constant="22" id="0vo-uS-Bns"/>
+                            <constraint firstItem="0Mt-rj-7o2" firstAttribute="top" secondItem="s9r-qb-F9Y" secondAttribute="bottom" constant="21" id="3nz-he-HRN"/>
+                            <constraint firstItem="vS3-pT-AAZ" firstAttribute="leading" secondItem="qwU-mv-F6i" secondAttribute="leading" id="49W-oK-D7n"/>
+                            <constraint firstItem="0Mt-rj-7o2" firstAttribute="leading" secondItem="GN1-Vc-BYC" secondAttribute="leadingMargin" constant="72" id="4O5-FZ-rQm"/>
+                            <constraint firstItem="MFL-QZ-wxs" firstAttribute="centerX" secondItem="GN1-Vc-BYC" secondAttribute="centerX" id="5vp-a9-ltw"/>
+                            <constraint firstItem="gQr-Ms-Hdp" firstAttribute="centerX" secondItem="qwU-mv-F6i" secondAttribute="centerX" id="9cI-U1-nZn"/>
+                            <constraint firstItem="Sz5-9z-dhg" firstAttribute="leading" secondItem="GN1-Vc-BYC" secondAttribute="leadingMargin" constant="79" id="BQB-fq-aOR"/>
+                            <constraint firstItem="MFL-QZ-wxs" firstAttribute="top" secondItem="vS3-pT-AAZ" secondAttribute="bottom" constant="23" id="L6Z-pU-zKt"/>
+                            <constraint firstItem="mlX-3d-KBd" firstAttribute="baseline" secondItem="cIW-GG-Cm7" secondAttribute="baseline" id="LId-2o-GJv"/>
+                            <constraint firstItem="xNO-W4-xOk" firstAttribute="leading" secondItem="GN1-Vc-BYC" secondAttribute="leadingMargin" constant="87" id="LUR-Au-7d1"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Sz5-9z-dhg" secondAttribute="trailing" constant="96" id="OCz-Ps-919"/>
+                            <constraint firstItem="xNO-W4-xOk" firstAttribute="top" secondItem="bAr-Wn-lC6" secondAttribute="bottom" constant="28" id="Oxi-Wi-61q"/>
+                            <constraint firstItem="vS3-pT-AAZ" firstAttribute="leading" secondItem="0Mt-rj-7o2" secondAttribute="trailing" constant="8" symbolic="YES" id="VoN-Ty-nqg"/>
+                            <constraint firstItem="qwU-mv-F6i" firstAttribute="baseline" secondItem="Sz5-9z-dhg" secondAttribute="baseline" id="WVL-lU-BA9"/>
+                            <constraint firstItem="Sz5-9z-dhg" firstAttribute="leading" secondItem="s9r-qb-F9Y" secondAttribute="leading" id="ckY-4e-l1a"/>
+                            <constraint firstItem="gQr-Ms-Hdp" firstAttribute="top" secondItem="qwU-mv-F6i" secondAttribute="bottom" constant="19" id="dfI-py-edg"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Vza-zX-s5E" secondAttribute="trailing" constant="88" id="f0U-Fa-aB6"/>
+                            <constraint firstItem="Vza-zX-s5E" firstAttribute="baseline" secondItem="xNO-W4-xOk" secondAttribute="baseline" id="f66-tx-aNY"/>
+                            <constraint firstItem="mlX-3d-KBd" firstAttribute="leading" secondItem="cIW-GG-Cm7" secondAttribute="trailing" constant="2" id="htz-Ug-CFJ"/>
+                            <constraint firstItem="0Mt-rj-7o2" firstAttribute="baseline" secondItem="vS3-pT-AAZ" secondAttribute="baseline" id="jtj-pp-DKn"/>
+                            <constraint firstItem="qwU-mv-F6i" firstAttribute="top" secondItem="cIW-GG-Cm7" secondAttribute="bottom" constant="21" id="kIs-4k-8iW"/>
+                            <constraint firstItem="cIW-GG-Cm7" firstAttribute="top" secondItem="vlb-0M-lSm" secondAttribute="bottom" constant="31" id="mB6-gg-sah"/>
+                            <constraint firstItem="gQr-Ms-Hdp" firstAttribute="leading" secondItem="s9r-qb-F9Y" secondAttribute="trailing" constant="3" id="nmH-16-JcP"/>
+                            <constraint firstItem="cIW-GG-Cm7" firstAttribute="leading" secondItem="GN1-Vc-BYC" secondAttribute="leadingMargin" constant="61" id="pE4-nT-ENk"/>
+                            <constraint firstItem="Ouy-QI-0xC" firstAttribute="baseline" secondItem="vlb-0M-lSm" secondAttribute="baseline" id="quc-YM-hdt"/>
+                            <constraint firstItem="gQr-Ms-Hdp" firstAttribute="baseline" secondItem="s9r-qb-F9Y" secondAttribute="baseline" id="ugk-6a-BPt"/>
+                            <constraint firstItem="Vza-zX-s5E" firstAttribute="leading" secondItem="xNO-W4-xOk" secondAttribute="trailing" constant="22" id="v5B-pY-75D"/>
+                            <constraint firstItem="Ouy-QI-0xC" firstAttribute="leading" secondItem="Vza-zX-s5E" secondAttribute="leading" id="vBO-kd-EFl"/>
+                            <constraint firstItem="vlb-0M-lSm" firstAttribute="trailing" secondItem="xNO-W4-xOk" secondAttribute="trailing" id="xYo-1N-BlX"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Ride Info" id="z6A-Cx-cWu">
+                        <barButtonItem key="leftBarButtonItem" title="Menu" id="RZG-ZS-Lko"/>
+                    </navigationItem>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="menuButton" destination="RZG-ZS-Lko" id="lyT-dW-yWd"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="r20-1g-7rf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-864.5" y="2203.5"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="20p-A2-1p7">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="RN2-2M-g4W" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="UiF-SY-82L">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="B0K-FU-hns"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GGT-M6-1Qw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="191.5" y="444.5"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="o05-Gk-QvM">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Yzm-QZ-91r" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="EqU-as-McU">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="VEF-MN-Qbp" kind="relationship" relationship="rootViewController" id="S4n-GS-8KW"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7yg-kS-17a" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1341.5" y="2203.5"/>
+        </scene>
+        <!--Ride Map-->
+        <scene sceneID="fwU-V4-Jg9">
+            <objects>
+                <viewController id="yhO-ky-r3w" customClass="RideMapViewController" customModule="iRide" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="5Qk-6G-z2a"/>
+                        <viewControllerLayoutGuide type="bottom" id="a8H-Cd-bnG"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="cvB-6q-aa2">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="RideMap_1" translatesAutoresizingMaskIntoConstraints="NO" id="BY7-BF-YXd">
+                                <rect key="frame" x="0.0" y="72" width="375" height="595"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="udC-92-ch8">
+                                <rect key="frame" x="222" y="576" width="110" height="30"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="94" id="6ia-hM-tNY"/>
+                                </constraints>
+                                <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
+                                <state key="normal" title="Shortest Path">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zQ0-io-dlo">
+                                <rect key="frame" x="64" y="576" width="114" height="30"/>
+                                <color key="backgroundColor" red="0.54390274363183144" green="0.7063405633738743" blue="0.87577715966020953" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Travelled Path">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="udC-92-ch8" firstAttribute="leading" secondItem="zQ0-io-dlo" secondAttribute="trailing" constant="60" id="EZm-uV-9SU"/>
+                            <constraint firstItem="BY7-BF-YXd" firstAttribute="bottom" secondItem="a8H-Cd-bnG" secondAttribute="top" id="Glj-5t-nYa"/>
+                            <constraint firstItem="zQ0-io-dlo" firstAttribute="baseline" secondItem="udC-92-ch8" secondAttribute="baseline" id="MgT-q4-hCM"/>
+                            <constraint firstItem="a8H-Cd-bnG" firstAttribute="top" secondItem="udC-92-ch8" secondAttribute="bottom" constant="61" id="iQP-Ud-6ej"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="udC-92-ch8" secondAttribute="trailing" constant="27" id="knb-ow-f2Q"/>
+                            <constraint firstItem="BY7-BF-YXd" firstAttribute="leading" secondItem="cvB-6q-aa2" secondAttribute="leading" id="uQu-71-D8W"/>
+                            <constraint firstAttribute="trailing" secondItem="BY7-BF-YXd" secondAttribute="trailing" id="vLL-7k-Xjn"/>
+                            <constraint firstItem="BY7-BF-YXd" firstAttribute="top" secondItem="5Qk-6G-z2a" secondAttribute="bottom" constant="8" symbolic="YES" id="x4b-2I-MGv"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Ride Map" id="oU4-yv-HBy">
+                        <barButtonItem key="leftBarButtonItem" title="Menu" id="iKJ-99-ddo"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="menuButton" destination="iKJ-99-ddo" id="U4S-VW-lba"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rtS-41-Tgb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1303.5" y="1774.5"/>
+        </scene>
+        <!--Ride Log-->
+        <scene sceneID="egS-1q-db4">
+            <objects>
+                <viewController id="C59-h3-MmK" customClass="RideLogViewController" customModule="iRide" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="eek-bl-1ND"/>
+                        <viewControllerLayoutGuide type="bottom" id="5r5-wf-FDI"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="T5W-Iz-s2o">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rn1-0q-gc2">
+                                <rect key="frame" x="0.0" y="72" width="375" height="595"/>
+                                <subviews>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="VxR-AW-Jr8">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="595"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <string key="text">From:      St.Joseph                                                                                                                                    To:            Omaha                                                                                           Distance Travelled:  5.6 miles                                                      Time Taken :            34 min 29 sec                                Average Speed:       12 mph                                               Date Of Ride:            02/15/2016                                               --------------------------------------------------------                                                         From:      Omaha                                                                                                                           To:           Warrensburg                                                                                           Distance Travelled:  25 miles                                                      Time Taken :            43 min 14 sec                                Average Speed:       24 mph                                               Date Of Ride:            03/05/2016                                               --------------------------------------------------------                 From:      Kansas                                                                                                                       To:            Omaha                                                                                           Distance Travelled:  80miles                                                      Time Taken :            90 min 29 sec                                Average Speed:       22 mph                                               Date Of Ride:            04/15/2016                                                 --------------------------------------------------------                From:      Warrensburg                                                                                                                          To:            Rolla                                                                                          Distance Travelled:  120miles                                                      Time Taken :            120 min 29 sec                                Average Speed:       34 mph                                               Date Of Ride:            04/29/2016                                              --------------------------------------------------------                  From:      St.Joseph                                                                                                                           To:            Omaha                                                                                           Distance Travelled:  5.6 miles                                                      Time Taken :            34 min 29 sec                                Average Speed:       12 mph                                               Date Of Ride:            02/15/2016                    </string>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                </subviews>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Ride Log" id="ir1-m1-BkR">
+                        <barButtonItem key="leftBarButtonItem" title="Menu" id="BFz-iU-c4Z"/>
+                    </navigationItem>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="ScrollView" destination="VxR-AW-Jr8" id="9As-h2-MaT"/>
+                        <outlet property="menuButton" destination="BFz-iU-c4Z" id="jEd-9H-Yu7"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jgG-UQ-sQR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="185.5" y="2203.5"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Ykn-JF-iQY">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="aIo-kA-jMX" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="nVf-LK-rFr">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="C59-h3-MmK" kind="relationship" relationship="rootViewController" id="grB-BA-fKv"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eV2-WA-Vuu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-303.5" y="2203.5"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="lfj-4b-kyn">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="66w-Gc-Qj3" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="czP-2r-v90">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="yhO-ky-r3w" kind="relationship" relationship="rootViewController" id="ewV-UW-L4M"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TkT-cc-9i4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="780.5" y="2203.5"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="RideMap_1" width="738" height="815"/>
+    </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="imo-2b-xSz"/>
+    </inferredMetricsTieBreakers>
+</document>

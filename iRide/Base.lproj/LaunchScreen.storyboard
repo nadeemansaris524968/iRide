@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" initialViewController="01J-lp-oVM">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="EHf-IW-A2E">
+            <objects>
+                <viewController id="01J-lp-oVM" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Llm-lL-Icb"/>
+                        <viewControllerLayoutGuide type="bottom" id="xb3-aO-Qok"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Sr-l3-rck">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                <items>
+                                    <navigationItem title="iRide" id="oZI-lg-FUr"/>
+                                </items>
+                            </navigationBar>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="launchImage01" translatesAutoresizingMaskIntoConstraints="NO" id="Fi3-rP-nYq">
+                                <rect key="frame" x="0.0" y="44" width="549" height="572"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Fi3-rP-nYq" firstAttribute="top" secondItem="3Sr-l3-rck" secondAttribute="top" id="5T3-qC-7eL"/>
+                            <constraint firstItem="Fi3-rP-nYq" firstAttribute="bottom" secondItem="xb3-aO-Qok" secondAttribute="top" id="6gD-hB-Ga3"/>
+                            <constraint firstItem="3Sr-l3-rck" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="THw-Ja-veq"/>
+                            <constraint firstItem="Fi3-rP-nYq" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="-25" id="Z2J-Sa-B82"/>
+                            <constraint firstItem="Fi3-rP-nYq" firstAttribute="trailing" secondItem="3Sr-l3-rck" secondAttribute="trailing" id="eqC-ng-Vka"/>
+                            <constraint firstItem="Fi3-rP-nYq" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="mu1-oA-Xwv"/>
+                            <constraint firstAttribute="trailing" secondItem="Fi3-rP-nYq" secondAttribute="trailing" id="njY-2q-Var"/>
+                        </constraints>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="471.5" y="380.5"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="launchImage01" width="343" height="504"/>
+    </resources>
+</document>
