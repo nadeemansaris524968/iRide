@@ -11,11 +11,31 @@ import MapKit
 import CoreLocation
 import AddressBookUI
 
-class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate{
+//var rides:[ride] = Ride()
 
+var ride:Ride = Ride()
+
+var myLocations: [CLLocation] = []
+var myLocationsIndex:Int = 0
+
+var startLocation:CLLocationCoordinate2D = CLLocationCoordinate2DMake(0.0, 0.0)
+var stopLocation:CLLocationCoordinate2D = CLLocationCoordinate2DMake(0.0, 0.0)
+
+var myPausedLocations: [CLLocation] = []
+var myPausedLocationsIndex:Int = 0
+
+class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate{
+    
+    var startLocationLatitude:CLLocationDegrees!
+    var startLocationLongitude:CLLocationDegrees!
+    
+    var pausedLocationLatitude:CLLocationDegrees!
+    var pausedLocationLongitude:CLLocationDegrees!
+    
+    
     var location = CLLocationManager()
     
-    var myLocations: [CLLocation] = []
+    
     var destination = CLLocationCoordinate2DMake(0, 0)
     
     
@@ -26,14 +46,12 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     
     @IBOutlet weak var destinationLocation: MKMapView!
     
-    
-    
-    
     @IBOutlet weak var endRide: UIButton!
    
     @IBOutlet weak var startRide: UIButton!
     
     @IBOutlet weak var pauseRide: UIButton!
+    
     @IBAction func pauseRide(sender: UIButton) {
         
         //pinCounter++
@@ -104,6 +122,16 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
                     //pauseDropPin.subtitle = "\(country)"
                 }
                 
+                
+                
+                myPausedLocations.append(newLocation)
+                print("Created and added paused pin")
+                
+                
+                
+                //print("Paused location: \(myPausedLocations[myPausedLocationsIndex])")
+                //myPausedLocationsIndex++
+                
         }
         
        
@@ -157,11 +185,12 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     
     @IBAction func endRide(sender: UIButton) {
         
-        
-        
         let endRideDropPin = MKPointAnnotation()
         
          endRideDropPin.coordinate = destination
+        
+        
+        
         location.stopUpdatingLocation()
         currentLocation.showsUserLocation = false
 
@@ -177,6 +206,9 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         let saveAction = UIAlertAction(title: "Save Ride", style: .Default, handler: {
             (alert: UIAlertAction!) -> Void in
             print("Saved")
+            
+            
+            
         })
         
         //
@@ -198,16 +230,8 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     @IBOutlet weak var slideOutMenuButton: UIBarButtonItem!
     
     
-    
-    
-    
-    
-    
-    
-    
+
     override func viewDidLoad() {
-        
-        
         
         if self.revealViewController() != nil {
             
@@ -219,15 +243,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
             
         }
         
-        
-        
-        
-        
-        
-        
         super.viewDidLoad()
-        
-        
         
         location.delegate = self
         
@@ -237,33 +253,14 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         
         location.startUpdatingLocation()
         
-        
-        
         currentLocation.showsUserLocation = true
         
         continueRide.hidden = true
         
-        
-        
-        
-        
         endRide.hidden = true
         
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
     }
-    
-    
-    
     
     
     func locationManager(manager: CLLocationManager,  didUpdateLocations locations: [CLLocation]) {
@@ -272,7 +269,65 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         
         myLocations.append(locations[0] as CLLocation)
         
+        if myLocations.count == 1 {
+            
+            startLocationLatitude = myLocations[myLocationsIndex].coordinate.latitude
+            
+            startLocationLongitude = myLocations[myLocationsIndex].coordinate.longitude
+            
+            //print("Start location latitude \(startLocationLatitude) \n Start location longitude \(startLocationLongitude)")
+            
+            CLGeocoder().reverseGeocodeLocation(locations[0], completionHandler: { (placemarks, error) -> Void in
+                
+                var title = ""
+                var subTitle = ""
+                
+                if (error == nil) {
+                    let p = placemarks![0]
+                    
+                    var subThoroughfare:String = ""
+                    var thoroughfare:String = ""
+                    var locality:String = ""
+                    var subLocality:String = ""
+                    var subAdministrativeArea:String = ""
+                    var postalCode:String = ""
+                    var country:String = ""
+                    
+                    if (p.subThoroughfare != nil) {
+                        subThoroughfare = (p.subThoroughfare)!
+                    }
+                    
+                    if (p.thoroughfare != nil) {
+                        thoroughfare = (p.thoroughfare)!
+                    }
+                    
+                    if (p.locality != nil) {
+                        locality = (p.locality)!
+                    }
+                    
+                    if (p.subLocality != nil) {
+                        subLocality = (p.subLocality)!
+                    }
+                    if (p.subAdministrativeArea != nil) {
+                        subAdministrativeArea = (p.subAdministrativeArea)!
+                    }
+                    if (p.postalCode != nil) {
+                        postalCode = (p.postalCode)!
+                    }
+                    if (p.country != nil) {
+                        country = (p.country)!
+                    }
+                    
+                    title = "\(subThoroughfare) \(thoroughfare) \(locality)"
+                    subTitle = "\(subLocality) \(postalCode) \(country)"
+                    
+                    ride.addStartLocation(title)
+                    
+                }
+            })
+        }
         
+        myLocationsIndex++
         
         let startPoint = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
         
@@ -322,9 +377,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         
     }
     
-    
-    
-    
+
     override func didReceiveMemoryWarning() {
         
         super.didReceiveMemoryWarning()

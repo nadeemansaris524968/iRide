@@ -19,6 +19,7 @@
 		BEA346C91C986A8F0039D3D2 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BEA346C81C986A8F0039D3D2 /* CoreLocation.framework */; };
 		BEA346CE1C986E2C0039D3D2 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA346CD1C986E2C0039D3D2 /* SWRevealViewController.m */; };
 		BEA346D01C987A5D0039D3D2 /* RideInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA346CF1C987A5D0039D3D2 /* RideInfoViewController.swift */; };
+		BEE217631CB4B8ED00577113 /* Ride.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE217621CB4B8ED00577113 /* Ride.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,7 @@
 		BEA346CC1C986E2C0039D3D2 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		BEA346CD1C986E2C0039D3D2 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		BEA346CF1C987A5D0039D3D2 /* RideInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RideInfoViewController.swift; path = ../RideInfoViewController.swift; sourceTree = "<group>"; };
+		BEE217621CB4B8ED00577113 /* Ride.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ride.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +123,7 @@
 				BEA346A11C9869A40039D3D2 /* Assets.xcassets */,
 				BEA346A31C9869A40039D3D2 /* LaunchScreen.storyboard */,
 				BEA346A61C9869A40039D3D2 /* Info.plist */,
+				BEE217621CB4B8ED00577113 /* Ride.swift */,
 			);
 			path = iRide;
 			sourceTree = "<group>";
@@ -291,6 +294,7 @@
 				BE88A7A51C98A8AE00C6B96E /* RideLogViewController.swift in Sources */,
 				BEA346D01C987A5D0039D3D2 /* RideInfoViewController.swift in Sources */,
 				BEA346CE1C986E2C0039D3D2 /* SWRevealViewController.m in Sources */,
+				BEE217631CB4B8ED00577113 /* Ride.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
