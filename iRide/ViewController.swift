@@ -90,6 +90,8 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         
         endRide.hidden = true
         
+        
+        ///////////////////////////-------------ADD CONDITION---------------////////////////////////
         rides.removeFirst()
     }
     

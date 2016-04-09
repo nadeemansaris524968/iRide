@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BE55A7BE1CB98BD20088BA1A /* RideLogTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE55A7BD1CB98BD20088BA1A /* RideLogTableViewController.swift */; };
 		BE88A7A31C98A6C700C6B96E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE88A7A11C98A6C700C6B96E /* Main.storyboard */; };
-		BE88A7A51C98A8AE00C6B96E /* RideLogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE88A7A41C98A8AE00C6B96E /* RideLogViewController.swift */; };
 		BE88A7A71C98AA0200C6B96E /* RideMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE88A7A61C98AA0200C6B96E /* RideMapViewController.swift */; };
 		BEA3469B1C9869A40039D3D2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA3469A1C9869A40039D3D2 /* AppDelegate.swift */; };
 		BEA3469D1C9869A40039D3D2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA3469C1C9869A40039D3D2 /* ViewController.swift */; };
@@ -40,8 +40,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		BE55A7BD1CB98BD20088BA1A /* RideLogTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RideLogTableViewController.swift; sourceTree = "<group>"; };
 		BE88A7A21C98A6C700C6B96E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = iRide/Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		BE88A7A41C98A8AE00C6B96E /* RideLogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RideLogViewController.swift; path = ../RideLogViewController.swift; sourceTree = "<group>"; };
 		BE88A7A61C98AA0200C6B96E /* RideMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RideMapViewController.swift; path = ../RideMapViewController.swift; sourceTree = "<group>"; };
 		BEA346971C9869A40039D3D2 /* iRide.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iRide.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEA3469A1C9869A40039D3D2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -115,10 +115,10 @@
 			isa = PBXGroup;
 			children = (
 				BE88A7A11C98A6C700C6B96E /* Main.storyboard */,
+				BE55A7BD1CB98BD20088BA1A /* RideLogTableViewController.swift */,
 				BEA3469A1C9869A40039D3D2 /* AppDelegate.swift */,
 				BEA3469C1C9869A40039D3D2 /* ViewController.swift */,
 				BEA346CF1C987A5D0039D3D2 /* RideInfoViewController.swift */,
-				BE88A7A41C98A8AE00C6B96E /* RideLogViewController.swift */,
 				BE88A7A61C98AA0200C6B96E /* RideMapViewController.swift */,
 				BEA346A11C9869A40039D3D2 /* Assets.xcassets */,
 				BEA346A31C9869A40039D3D2 /* LaunchScreen.storyboard */,
@@ -288,10 +288,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE55A7BE1CB98BD20088BA1A /* RideLogTableViewController.swift in Sources */,
 				BEA3469D1C9869A40039D3D2 /* ViewController.swift in Sources */,
 				BE88A7A71C98AA0200C6B96E /* RideMapViewController.swift in Sources */,
 				BEA3469B1C9869A40039D3D2 /* AppDelegate.swift in Sources */,
-				BE88A7A51C98A8AE00C6B96E /* RideLogViewController.swift in Sources */,
 				BEA346D01C987A5D0039D3D2 /* RideInfoViewController.swift in Sources */,
 				BEA346CE1C986E2C0039D3D2 /* SWRevealViewController.m in Sources */,
 				BEE217631CB4B8ED00577113 /* Ride.swift in Sources */,
