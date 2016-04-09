@@ -13,14 +13,7 @@ class Ride {
     var startLocation:String!
     var endLocation:String!
     var pausedLocation:[String]!
-    
-//    convenience init () {
-//        //self.init()
-//        startLocation = ""
-//        endLocation = ""
-//        pausedLocation = [""]
-//    }
-    
+        
     init (StartLocation:String, EndLocation:String) {
         startLocation = StartLocation
         endLocation = EndLocation

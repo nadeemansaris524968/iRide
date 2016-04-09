@@ -12,7 +12,6 @@ class RideLogViewController: UIViewController {
 
     @IBOutlet weak var menuButton: UIBarButtonItem!
     
-    @IBOutlet weak var ScrollView: UIScrollView!
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -21,7 +20,7 @@ class RideLogViewController: UIViewController {
             menuButton.action = "revealToggle:"
             self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         }
-        ScrollView.contentSize.height = 2000
+        //ScrollView.contentSize.height = 2000
     }
 
     override func didReceiveMemoryWarning() {

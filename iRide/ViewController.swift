@@ -11,15 +11,19 @@ import MapKit
 import CoreLocation
 import AddressBookUI
 
-//var rides:[ride] = Ride()
+var rides = [Ride(StartLocation: "", EndLocation: "")]
 
-var ride:Ride = Ride()
+var ride:Ride = Ride(StartLocation: "", EndLocation: "")
+
+
+var allLocations:[CLLocation] = []
+var allLocationsIndex:Int = 0
 
 var myLocations: [CLLocation] = []
 var myLocationsIndex:Int = 0
 
-var startLocation:CLLocationCoordinate2D = CLLocationCoordinate2DMake(0.0, 0.0)
-var stopLocation:CLLocationCoordinate2D = CLLocationCoordinate2DMake(0.0, 0.0)
+var startLocation = CLLocationCoordinate2DMake(0.0, 0.0)
+var stopLocation = CLLocationCoordinate2DMake(0.0, 0.0)
 
 var myPausedLocations: [CLLocation] = []
 var myPausedLocationsIndex:Int = 0
@@ -38,6 +42,8 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     
     var destination = CLLocationCoordinate2DMake(0, 0)
     
+    var endDestination:CLLocation!
+    
     
     var pinCounter:Int = 0
     
@@ -51,6 +57,44 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     @IBOutlet weak var startRide: UIButton!
     
     @IBOutlet weak var pauseRide: UIButton!
+    
+    
+    ///////////////////////////////////////////////////--------------------VIEW DID LOAD--------------------///////////////////////////////////////////////////
+    
+    
+    override func viewDidLoad() {
+        
+        if self.revealViewController() != nil {
+            
+            slideOutMenuButton.target = self.revealViewController()
+            
+            slideOutMenuButton.action = "revealToggle:"
+            
+            self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
+            
+        }
+        
+        super.viewDidLoad()
+        
+        location.delegate = self
+        
+        location.desiredAccuracy = kCLLocationAccuracyBest
+        
+        location.requestWhenInUseAuthorization()
+        
+        location.startUpdatingLocation()
+        
+        currentLocation.showsUserLocation = true
+        
+        continueRide.hidden = true
+        
+        endRide.hidden = true
+        
+        rides.removeFirst()
+    }
+    
+    
+    ///////////////////////////////////////////////////--------------------PAUSE RIDE--------------------///////////////////////////////////////////////////
     
     @IBAction func pauseRide(sender: UIButton) {
         
@@ -125,7 +169,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
                 
                 
                 myPausedLocations.append(newLocation)
-                print("Created and added paused pin")
+                print("Created and added paused pin to the map")
                 
                 
                 
@@ -137,7 +181,11 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
        
         
     }
+    
     @IBOutlet weak var continueRide: UIButton!
+    
+    
+    ///////////////////////////////////////////////////--------------------CONTINUE RIDE--------------------///////////////////////////////////////////////////
     @IBAction func continueRide(sender: UIButton) {
         
         location.startUpdatingLocation()
@@ -172,6 +220,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     }
     
     
+    ///////////////////////////////////////////////////--------------------START RIDE--------------------///////////////////////////////////////////////////
     
     @IBAction func startRide(sender: UIButton) {
         
@@ -181,7 +230,12 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         
         
         currentLocation.delegate = self
+        
+//        rides.removeFirst()
     }
+    
+    
+    ///////////////////////////////////////////////////--------------------END RIDE--------------------///////////////////////////////////////////////////
     
     @IBAction func endRide(sender: UIButton) {
         
@@ -189,6 +243,56 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         
          endRideDropPin.coordinate = destination
         
+        var title = ""
+        
+        var subTitle = ""
+        
+        CLGeocoder().reverseGeocodeLocation(endDestination, completionHandler: { (placemarks, error) -> Void in
+ 
+            if (error == nil) {
+                let p = placemarks![0]
+                
+                var subThoroughfare:String = ""
+                var thoroughfare:String = ""
+                var locality:String = ""
+                var subLocality:String = ""
+                var subAdministrativeArea:String = ""
+                var postalCode:String = ""
+                var country:String = ""
+                
+                if (p.subThoroughfare != nil) {
+                    subThoroughfare = (p.subThoroughfare)!
+                }
+                
+                if (p.thoroughfare != nil) {
+                    thoroughfare = (p.thoroughfare)!
+                }
+                
+                if (p.locality != nil) {
+                    locality = (p.locality)!
+                }
+                
+                if (p.subLocality != nil) {
+                    subLocality = (p.subLocality)!
+                }
+                if (p.subAdministrativeArea != nil) {
+                    subAdministrativeArea = (p.subAdministrativeArea)!
+                }
+                if (p.postalCode != nil) {
+                    postalCode = (p.postalCode)!
+                }
+                if (p.country != nil) {
+                    country = (p.country)!
+                }
+                
+                title = "\(subThoroughfare) \(thoroughfare) \(locality)"
+                subTitle = "\(subLocality) \(postalCode) \(country)"
+                
+//                ride.endLocation = title
+//                
+//                print("End Ride location \(ride.endLocation)")
+            }
+        })
         
         
         location.stopUpdatingLocation()
@@ -207,7 +311,15 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
             (alert: UIAlertAction!) -> Void in
             print("Saved")
             
+            ride.endLocation = title
             
+            print("End Ride location \(ride.endLocation)")
+            
+            rides.append(ride)
+            
+            for var eachRide in rides {
+                print("Start location: \(eachRide.startLocation) \n End location: \(eachRide.endLocation)")
+            }
             
         })
         
@@ -231,43 +343,16 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     
     
 
-    override func viewDidLoad() {
-        
-        if self.revealViewController() != nil {
-            
-            slideOutMenuButton.target = self.revealViewController()
-            
-            slideOutMenuButton.action = "revealToggle:"
-            
-            self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
-            
-        }
-        
-        super.viewDidLoad()
-        
-        location.delegate = self
-        
-        location.desiredAccuracy = kCLLocationAccuracyBest
-        
-        location.requestWhenInUseAuthorization()
-        
-        location.startUpdatingLocation()
-        
-        currentLocation.showsUserLocation = true
-        
-        continueRide.hidden = true
-        
-        endRide.hidden = true
-        
-        
-    }
+///////////////////////////////////////////////////--------------------UPDATING LOCATIONS--------------------///////////////////////////////////////////////////
     
     
     func locationManager(manager: CLLocationManager,  didUpdateLocations locations: [CLLocation]) {
         
         let location = locations.last! as CLLocation
         
-        myLocations.append(locations[0] as CLLocation)
+        allLocations = locations
+        
+        myLocations.append(locations[0])
         
         if myLocations.count == 1 {
             
@@ -323,11 +408,16 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
                     
                     ride.addStartLocation(title)
                     
+                    
+                    
                 }
             })
         }
         
         myLocationsIndex++
+        
+        print("\(allLocations[allLocationsIndex].speed)")
+        
         
         let startPoint = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
         
@@ -355,7 +445,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
 
         }
         
-        
+        endDestination = CLLocation(latitude: destination.latitude, longitude: destination.longitude)
 
     }
 

@@ -520,20 +520,6 @@
                     <view key="view" contentMode="scaleToFill" id="T5W-Iz-s2o">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rn1-0q-gc2">
-                                <rect key="frame" x="0.0" y="72" width="375" height="595"/>
-                                <subviews>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="VxR-AW-Jr8">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="595"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <string key="text">From:      St.Joseph                                                                                                                                    To:            Omaha                                                                                           Distance Travelled:  5.6 miles                                                      Time Taken :            34 min 29 sec                                Average Speed:       12 mph                                               Date Of Ride:            02/15/2016                                               --------------------------------------------------------                                                         From:      Omaha                                                                                                                           To:           Warrensburg                                                                                           Distance Travelled:  25 miles                                                      Time Taken :            43 min 14 sec                                Average Speed:       24 mph                                               Date Of Ride:            03/05/2016                                               --------------------------------------------------------                 From:      Kansas                                                                                                                       To:            Omaha                                                                                           Distance Travelled:  80miles                                                      Time Taken :            90 min 29 sec                                Average Speed:       22 mph                                               Date Of Ride:            04/15/2016                                                 --------------------------------------------------------                From:      Warrensburg                                                                                                                          To:            Rolla                                                                                          Distance Travelled:  120miles                                                      Time Taken :            120 min 29 sec                                Average Speed:       34 mph                                               Date Of Ride:            04/29/2016                                              --------------------------------------------------------                  From:      St.Joseph                                                                                                                           To:            Omaha                                                                                           Distance Travelled:  5.6 miles                                                      Time Taken :            34 min 29 sec                                Average Speed:       12 mph                                               Date Of Ride:            02/15/2016                    </string>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                    </textView>
-                                </subviews>
-                            </scrollView>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Ride Log" id="ir1-m1-BkR">
@@ -541,7 +527,6 @@
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
-                        <outlet property="ScrollView" destination="VxR-AW-Jr8" id="9As-h2-MaT"/>
                         <outlet property="menuButton" destination="BFz-iU-c4Z" id="jEd-9H-Yu7"/>
                     </connections>
                 </viewController>
