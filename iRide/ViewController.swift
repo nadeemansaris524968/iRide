@@ -33,6 +33,9 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     var startLocationLatitude:CLLocationDegrees!
     var startLocationLongitude:CLLocationDegrees!
     
+    var endLocationLatitude:CLLocationDegrees!
+    var endLocationLongitude:CLLocationDegrees!
+    
     var pausedLocationLatitude:CLLocationDegrees!
     var pausedLocationLongitude:CLLocationDegrees!
     
@@ -46,6 +49,12 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     
     
     var pinCounter:Int = 0
+    
+    @IBOutlet weak var viewRideInfoBTN: UIButton!
+    
+    @IBAction func viewRideInfoBTN(sender: UIButton) {
+        
+    }
     
     
     @IBOutlet weak var currentLocation: MKMapView!
@@ -82,17 +91,20 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         
         location.requestWhenInUseAuthorization()
         
-        location.startUpdatingLocation()
         
-        currentLocation.showsUserLocation = true
         
         continueRide.hidden = true
         
         endRide.hidden = true
         
+        if places.count == 1 {
+            places.removeFirst()
+        }
         
         ///////////////////////////-------------ADD CONDITION---------------////////////////////////
-        rides.removeFirst()
+        //rides.removeFirst()
+        
+        viewRideInfoBTN.hidden = true
     }
     
     
@@ -201,8 +213,6 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     
     @IBAction func segmentedControlAction(sender: UISegmentedControl!) {
         
-        
-        
         switch (sender.selectedSegmentIndex) {
             
         case 0:
@@ -232,6 +242,10 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         
         
         currentLocation.delegate = self
+        
+        location.startUpdatingLocation()
+        
+        currentLocation.showsUserLocation = true
         
 //        rides.removeFirst()
     }
@@ -290,9 +304,16 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
                 title = "\(subThoroughfare) \(thoroughfare) \(locality)"
                 subTitle = "\(subLocality) \(postalCode) \(country)"
                 
-//                ride.endLocation = title
-//                
+                ride.endLocation = title
+                
+                self.endLocationLatitude = self.endDestination.coordinate.latitude
+                self.endLocationLongitude = self.endDestination.coordinate.longitude
+                
+                //ride.addEndLocation("\(endDestination.coordinate.latitude)")
+//
 //                print("End Ride location \(ride.endLocation)")
+                
+                print("End location lat : \(self.endLocationLatitude) \nEnd location lon: \(self.endLocationLongitude)")
             }
         })
         
@@ -313,16 +334,31 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
             (alert: UIAlertAction!) -> Void in
             print("Saved")
             
-            ride.endLocation = title
+            //ride.endLocation = title
             
             print("End Ride location \(ride.endLocation)")
             
             rides.append(ride)
             
-            for var eachRide in rides {
-                print("Start location: \(eachRide.startLocation) \n End location: \(eachRide.endLocation)")
-            }
+//            for var eachRide in rides {
+//                print("Start location: \(eachRide.startLocation) \n End location: \(eachRide.endLocation)")
+//            }
             
+            //Use this method if you get nils in lats and lons for start location.
+            
+//            if self.startLocationLatitude == nil && self.startLocationLongitude == nil {
+//                
+//                print("Start lat and lon were nil")
+//                
+//                self.startLocationLatitude = 37.331833
+//                self.startLocationLongitude = -122.029556
+//            }
+            
+            places.append(["Start":"\(ride.startLocation)", "End":"\(ride.endLocation)", "startLat":"\(self.startLocationLatitude)", "startLon":"\(self.startLocationLongitude)", "endLat":"\(self.endLocationLatitude)", "endLon":"\(self.endLocationLongitude)"])
+
+            print("Places now: \(places.count) \n\(places)")
+            
+            self.viewRideInfoBTN.hidden = false
         })
         
         //
@@ -355,6 +391,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         allLocations = locations
         
         myLocations.append(locations[0])
+        
         
         if myLocations.count == 1 {
             

@@ -37,7 +37,9 @@ class RideInfoViewController: UIViewController {
             self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         }
         
+        fromLBL.text = "\(places.last!["Start"]!)"
         
+        toLBL.text = "\(places.last!["End"]!)"
         
     }
 

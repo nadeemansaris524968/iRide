@@ -8,6 +8,10 @@
 
 import UIKit
 
+var activePlace = -1
+
+var places = [Dictionary<String, String>()]
+
 class RideLogTableViewController: UITableViewController {
 
     @IBOutlet weak var menuButton: UIBarButtonItem!
@@ -26,6 +30,11 @@ class RideLogTableViewController: UITableViewController {
             menuButton.action = "revealToggle:"
             self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         }
+        
+        if places.count == 1 {
+            //places.removeAtIndex(0)
+            places.append(["Start":"Taj Mahal","End":"New Delhi", "lat":"27.175277", "lon":"78.042128"])
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -42,16 +51,19 @@ class RideLogTableViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return rides.count
+        return places.count
     }
 
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
 
-        cell.textLabel?.text = rides[indexPath.row].startLocation
-        cell.detailTextLabel?.text = rides[indexPath.row].endLocation
+        //cell.textLabel?.text = rides[indexPath.row].startLocation
+        //cell.detailTextLabel?.text = rides[indexPath.row].endLocation
 
+        cell.textLabel?.text = places[indexPath.row]["Start"]
+        cell.detailTextLabel?.text = places[indexPath.row]["End"]
+        
         return cell
     }
 
@@ -59,6 +71,13 @@ class RideLogTableViewController: UITableViewController {
         tableView.reloadData()
     }
 
+    override func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
+        activePlace = indexPath.row
+        return indexPath
+    }
+    
+    
+    
     
     /*
     // Override to support conditional editing of the table view.
