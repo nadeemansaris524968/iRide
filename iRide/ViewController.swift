@@ -28,6 +28,9 @@ var locationCounter:Int = 0
 var speedArray:[Double] = []
 var avgSpeed:Double = 0.0
 
+var timer = NSTimer()
+var time = 0
+
 var myLocations: [CLLocation] = []
 var myLocationsIndex:Int = 0
 
@@ -136,6 +139,8 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     @IBAction func pauseRide(sender: UIButton) {
         
         //pinCounter++
+        
+        timer.invalidate()
       
         let pauseDropPin = MKPointAnnotation()
         pauseDropPin.coordinate = destination
@@ -229,6 +234,8 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         currentLocation.showsUserLocation = true
         pauseRide.hidden = false
         continueRide.hidden = true
+        
+        timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: Selector("increaseTimer"), userInfo: nil, repeats: true)
     }
     
     
@@ -267,13 +274,23 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         
         
         currentLocation.delegate = self
+        
+        timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: Selector("increaseTimer"), userInfo: nil, repeats: true)
+        
 //        rides.removeFirst()
     }
     
+    func increaseTimer () {
+        time++
+        
+        print("Time elasped: \(time)")
+    }
     
     ///////////////////////////////////////////////////--------------------END RIDE--------------------///////////////////////////////////////////////////
     
     @IBAction func endRide(sender: UIButton) {
+        
+        timer.invalidate()
         
         let endRideDropPin = MKPointAnnotation()
         
@@ -388,7 +405,12 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
             
             avgSpeed = avgSpeed/(Double(locationCounter))
             
-            places.append(["Start":"\(ride.startLocation)", "End":"\(ride.endLocation)", "startLat":"\(self.startLocationLatitude)", "startLon":"\(self.startLocationLongitude)", "endLat":"\(self.endLocationLatitude)", "endLon":"\(self.endLocationLongitude)", "dist":"\(distanceBetweenCoordinates*0.000621371)", "avgSpeed":"\(avgSpeed*2.23)"])
+            print("Ride ended. Time elasped since start: \(time)")
+            
+            places.append(["Start":"\(ride.startLocation)", "End":"\(ride.endLocation)", "startLat":"\(self.startLocationLatitude)", "startLon":"\(self.startLocationLongitude)", "endLat":"\(self.endLocationLatitude)", "endLon":"\(self.endLocationLongitude)", "dist":"\(distanceBetweenCoordinates*0.000621371)", "avgSpeed":"\(avgSpeed*2.23)", "rideTime":"\(time)"])
+            
+            
+            time = 0
 
             print("Places now: \(places.count) \n\(places)")
             

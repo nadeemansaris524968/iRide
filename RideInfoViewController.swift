@@ -20,6 +20,8 @@ class RideInfoViewController: UIViewController {
     
     @IBOutlet weak var speedLBL: UILabel!
     
+    @IBOutlet weak var time: UILabel!
+    
 //       @IBAction func logThisBTN(sender: AnyObject) {
 //        let title = "iRide"
 //        let message = "Your ride has been logged"
@@ -48,6 +50,19 @@ class RideInfoViewController: UIViewController {
         distanceLBL.text = String(format: "%1.2f miles", distanceBetweenCoordinates*0.000621371)
         
         speedLBL.text = String(format: "%1.2f mph", Double(places.last!["avgSpeed"]!)!)
+        
+        if Double(places.last!["rideTime"]!)! > 60 {
+            time.text = String(format: "%2.0f min %2.0f sec", (Double(places.last!["rideTime"]!)!)/60, (Double(places.last!["rideTime"]!)!) - 60)
+        }
+        
+        else if Double(places.last!["rideTime"]!)! > 3600 {
+            time.text = String(format:"%2.0f hr", (Double(places.last!["rideTime"]!)!)/3600)
+        }
+        
+        else {
+            time.text = String(format: "%2.0f sec", Double(places.last!["rideTime"]!)!)
+        }
+        
         
     }
 
