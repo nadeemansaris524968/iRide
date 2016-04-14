@@ -15,9 +15,17 @@ var rides = [Ride(StartLocation: "", EndLocation: "")]
 
 var ride:Ride = Ride(StartLocation: "", EndLocation: "")
 
+var distanceBetweenCoordinates:Double = 0.0
+
+var from:CLLocation!
+var to:CLLocation!
 
 var allLocations:[CLLocation] = []
 var allLocationsIndex:Int = 0
+
+var locationCounter:Int = 0
+
+var speedArray:[Int]!
 
 var myLocations: [CLLocation] = []
 var myLocationsIndex:Int = 0
@@ -46,6 +54,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     var destination = CLLocationCoordinate2DMake(0, 0)
     
     var endDestination:CLLocation!
+    
     
     
     var pinCounter:Int = 0
@@ -84,6 +93,23 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         }
         
         super.viewDidLoad()
+    
+        continueRide.hidden = true
+        
+        endRide.hidden = true
+        
+        if places.count == 1 {
+            places.removeFirst()
+            places.append(["Start":"Taj Mahal","End":"New Delhi", "startLat":"27.175277", "startLon":"78.042128"])
+        }
+        
+        if distanceBetweenCoordinates > 0.0 {
+            distanceBetweenCoordinates = 0.0
+        }
+        
+        
+        
+        viewRideInfoBTN.hidden = true
         
         location.delegate = self
         
@@ -91,22 +117,18 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         
         location.requestWhenInUseAuthorization()
         
+        currentLocation.showsUserLocation = true
         
         
-        continueRide.hidden = true
-        
-        endRide.hidden = true
-        
-        if places.count == 1 {
-            places.removeFirst()
-        }
-        
-        ///////////////////////////-------------ADD CONDITION---------------////////////////////////
-        //rides.removeFirst()
-        
-        viewRideInfoBTN.hidden = true
     }
     
+    override func viewWillAppear(animated: Bool) {
+        if distanceBetweenCoordinates > 0.0 {
+            distanceBetweenCoordinates = 0.0
+        }
+        
+        
+    }
     
     ///////////////////////////////////////////////////--------------------PAUSE RIDE--------------------///////////////////////////////////////////////////
     
@@ -239,14 +261,11 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         endRide.hidden = false
         startRide.hidden = true
         
+        location.startUpdatingLocation()
+        
         
         
         currentLocation.delegate = self
-        
-        location.startUpdatingLocation()
-        
-        currentLocation.showsUserLocation = true
-        
 //        rides.removeFirst()
     }
     
@@ -258,6 +277,9 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         let endRideDropPin = MKPointAnnotation()
         
          endRideDropPin.coordinate = destination
+        
+        endRideDropPin.title = " "
+        endRideDropPin.subtitle = " "
         
         var title = ""
         
@@ -306,6 +328,8 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
                 
                 ride.endLocation = title
                 
+                
+                
                 self.endLocationLatitude = self.endDestination.coordinate.latitude
                 self.endLocationLongitude = self.endDestination.coordinate.longitude
                 
@@ -323,7 +347,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
 
         currentLocation.addAnnotation(endRideDropPin)
         
-        let optionMenu = UIAlertController(title: nil, message: "Choose Option", preferredStyle: .ActionSheet)
+        let optionMenu = UIAlertController(title: nil, message: "Choose Option", preferredStyle: .Alert)
         
         // 2
         let deleteAction = UIAlertAction(title: "Discard Ride", style: .Default, handler: {
@@ -346,17 +370,22 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
             
             //Use this method if you get nils in lats and lons for start location.
             
-//            if self.startLocationLatitude == nil && self.startLocationLongitude == nil {
-//                
-//                print("Start lat and lon were nil")
-//                
-//                self.startLocationLatitude = 37.331833
-//                self.startLocationLongitude = -122.029556
-//            }
+            if self.startLocationLatitude == nil && self.startLocationLongitude == nil {
+                
+                print("Start lat and lon were nil")
+                
+                self.startLocationLatitude = 37.331833
+                self.startLocationLongitude = -122.029556
+            }
             
-            places.append(["Start":"\(ride.startLocation)", "End":"\(ride.endLocation)", "startLat":"\(self.startLocationLatitude)", "startLon":"\(self.startLocationLongitude)", "endLat":"\(self.endLocationLatitude)", "endLon":"\(self.endLocationLongitude)"])
+            endRideDropPin.title = title
+            endRideDropPin.subtitle = subTitle
+            
+            places.append(["Start":"\(ride.startLocation)", "End":"\(ride.endLocation)", "startLat":"\(self.startLocationLatitude)", "startLon":"\(self.startLocationLongitude)", "endLat":"\(self.endLocationLatitude)", "endLon":"\(self.endLocationLongitude)", "dist":"\(distanceBetweenCoordinates*0.000621371)"])
 
             print("Places now: \(places.count) \n\(places)")
+            
+            
             
             self.viewRideInfoBTN.hidden = false
         })
@@ -394,6 +423,11 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         
         
         if myLocations.count == 1 {
+            
+            var startRidePin:MKPointAnnotation = MKPointAnnotation()
+            
+            startRidePin.title = " "
+            startRidePin.subtitle = " "
             
             startLocationLatitude = myLocations[myLocationsIndex].coordinate.latitude
             
@@ -447,7 +481,10 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
                     
                     ride.addStartLocation(title)
                     
+                    startRidePin.title = title
+                    startRidePin.subtitle = subTitle
                     
+                    self.currentLocation.addAnnotation(startRidePin)
                     
                 }
             })
@@ -481,10 +518,25 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
             let polyline = MKPolyline(coordinates: &a, count: a.count)
             
             currentLocation.addOverlay(polyline)
+            
+            print("C1: \(c1) C2: \(c2)")
+            
+            
+            from = CLLocation(latitude: c1.latitude, longitude: c1.longitude)
+            to = CLLocation(latitude: c2.latitude, longitude: c2.longitude)
+            
+            distanceBetweenCoordinates += from.distanceFromLocation(to)
+            
+            print("Distance : \(distanceBetweenCoordinates)")
 
         }
         
         endDestination = CLLocation(latitude: destination.latitude, longitude: destination.longitude)
+        
+        locationCounter++
+        
+        print("No of locations : \(locationCounter)")
+        
 
     }
 

@@ -16,6 +16,8 @@ class RideInfoViewController: UIViewController {
     
     @IBOutlet weak var toLBL: UILabel!
 
+    @IBOutlet weak var distanceLBL: UILabel!
+    
 //       @IBAction func logThisBTN(sender: AnyObject) {
 //        let title = "iRide"
 //        let message = "Your ride has been logged"
@@ -40,6 +42,12 @@ class RideInfoViewController: UIViewController {
         fromLBL.text = "\(places.last!["Start"]!)"
         
         toLBL.text = "\(places.last!["End"]!)"
+        
+        //distanceLBL.text = "\(places.last!["dist"]!)"
+        
+        print("No of locations: \(allLocations.count)")
+        
+        distanceLBL.text = String(format: "%1.2f miles", distanceBetweenCoordinates*0.000621371)
         
     }
 

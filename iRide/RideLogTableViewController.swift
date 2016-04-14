@@ -31,10 +31,6 @@ class RideLogTableViewController: UITableViewController {
             self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         }
         
-        if places.count == 1 {
-            //places.removeAtIndex(0)
-            places.append(["Start":"Taj Mahal","End":"New Delhi", "lat":"27.175277", "lon":"78.042128"])
-        }
     }
 
     override func didReceiveMemoryWarning() {
