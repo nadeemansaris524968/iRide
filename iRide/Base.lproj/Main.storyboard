@@ -450,6 +450,7 @@
                         <outlet property="distanceLBL" destination="mlX-3d-KBd" id="Hck-Ud-Jc9"/>
                         <outlet property="fromLBL" destination="Vza-zX-s5E" id="eQb-6B-Veu"/>
                         <outlet property="menuButton" destination="RZG-ZS-Lko" id="lyT-dW-yWd"/>
+                        <outlet property="speedLBL" destination="gQr-Ms-Hdp" id="jAR-uR-U1j"/>
                         <outlet property="toLBL" destination="mgg-Fe-BUe" id="rTh-83-cKp"/>
                     </connections>
                 </viewController>

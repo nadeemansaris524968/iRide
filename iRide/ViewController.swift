@@ -25,7 +25,8 @@ var allLocationsIndex:Int = 0
 
 var locationCounter:Int = 0
 
-var speedArray:[Int]!
+var speedArray:[Double] = []
+var avgSpeed:Double = 0.0
 
 var myLocations: [CLLocation] = []
 var myLocationsIndex:Int = 0
@@ -381,11 +382,19 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
             endRideDropPin.title = title
             endRideDropPin.subtitle = subTitle
             
-            places.append(["Start":"\(ride.startLocation)", "End":"\(ride.endLocation)", "startLat":"\(self.startLocationLatitude)", "startLon":"\(self.startLocationLongitude)", "endLat":"\(self.endLocationLatitude)", "endLon":"\(self.endLocationLongitude)", "dist":"\(distanceBetweenCoordinates*0.000621371)"])
+            for eachSpeed in speedArray {
+                avgSpeed += eachSpeed
+            }
+            
+            avgSpeed = avgSpeed/(Double(locationCounter))
+            
+            places.append(["Start":"\(ride.startLocation)", "End":"\(ride.endLocation)", "startLat":"\(self.startLocationLatitude)", "startLon":"\(self.startLocationLongitude)", "endLat":"\(self.endLocationLatitude)", "endLon":"\(self.endLocationLongitude)", "dist":"\(distanceBetweenCoordinates*0.000621371)", "avgSpeed":"\(avgSpeed*2.23)"])
 
             print("Places now: \(places.count) \n\(places)")
             
             
+            
+//            print("Average speed: \(avgSpeed/Double(locationCounter))")
             
             self.viewRideInfoBTN.hidden = false
         })
@@ -418,6 +427,8 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         let location = locations.last! as CLLocation
         
         allLocations = locations
+        
+        speedArray.append(location.speed)
         
         myLocations.append(locations[0])
         
