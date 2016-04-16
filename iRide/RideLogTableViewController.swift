@@ -7,11 +7,18 @@
 //
 
 import UIKit
+import CoreData
 
 var activePlace = -1
 
 var places = [Dictionary<String, String>()]
-
+var fromLoc: String = " "
+var toLoc: String = " "
+var distance: String = " "
+var timeTaken: String = " "
+var avgspeed: String = " "
+var date: String = " "
+var results:AnyObject!
 class RideLogTableViewController: UITableViewController {
 
     @IBOutlet weak var menuButton: UIBarButtonItem!
@@ -19,16 +26,56 @@ class RideLogTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        let appDel:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        
+        
+        let context:NSManagedObjectContext = appDel.managedObjectContext
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
+        
+        let request = NSFetchRequest(entityName: "RideLog")
+        
+        request.returnsObjectsAsFaults = false
+        
+        let results = try? context.executeFetchRequest(request)
+        
+        if results!.count > 0 {
+            
+            for result: AnyObject in results! {
+                
+                fromLoc = result.valueForKey("from") as! String
+                toLoc = result.valueForKey("to") as! String
+                distance = result.valueForKey("distance") as! String
+                timeTaken = result.valueForKey("time") as! String
+                avgspeed = result.valueForKey("avgspeed") as! String
+                date = result.valueForKey("date") as! String
+                
+               
+                
+                
+            }
+            
+            print("\(fromLoc + " " + toLoc + " " + distance + " " + timeTaken + " " + avgspeed + " " + date)")
+           
+            
+        } else {
+            
+            print("No results")
+            
+        }
+        
+
+        
         if self.revealViewController() != nil {
             menuButton.target = self.revealViewController()
             menuButton.action = "revealToggle:"
             self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
+            
+            
         }
         
     }
@@ -57,8 +104,8 @@ class RideLogTableViewController: UITableViewController {
         //cell.textLabel?.text = rides[indexPath.row].startLocation
         //cell.detailTextLabel?.text = rides[indexPath.row].endLocation
 
-        cell.textLabel?.text = places[indexPath.row]["Start"]
-        cell.detailTextLabel?.text = places[indexPath.row]["End"]
+        cell.textLabel?.text = "\(fromLoc + " - " + toLoc)"
+        cell.detailTextLabel?.text = date
         
         return cell
     }

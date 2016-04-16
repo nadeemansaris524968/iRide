@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class RideInfoViewController: UIViewController {
     
@@ -22,6 +23,37 @@ class RideInfoViewController: UIViewController {
     
     @IBOutlet weak var time: UILabel!
     
+    @IBOutlet weak var dateLBL: UILabel!
+    
+    @IBAction func logThisBtn(sender: UIButton) {
+        
+        let appDel:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        
+        let context:NSManagedObjectContext = appDel.managedObjectContext
+        
+        let rideLog = NSEntityDescription.insertNewObjectForEntityForName("RideLog", inManagedObjectContext: context)
+        
+        
+        rideLog.setValue(fromLBL.text, forKey: "from")
+        rideLog.setValue(toLBL.text, forKey: "to")
+
+        rideLog.setValue(distanceLBL.text, forKey: "distance")
+        rideLog.setValue(time.text, forKey: "time")
+        rideLog.setValue(speedLBL.text, forKey: "avgspeed")
+        rideLog.setValue(dateLBL.text, forKey: "date")
+        
+        do {
+            try context.save()
+        } catch  {
+            // Handle error stored in *error* here
+        }
+        
+        
+        
+
+        
+        
+    }
 //       @IBAction func logThisBTN(sender: AnyObject) {
 //        let title = "iRide"
 //        let message = "Your ride has been logged"
@@ -62,6 +94,8 @@ class RideInfoViewController: UIViewController {
         else {
             time.text = String(format: "%2.0f sec", Double(places.last!["rideTime"]!)!)
         }
+        
+        
         
         
     }
