@@ -124,6 +124,8 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         currentLocation.showsUserLocation = true
         
         
+        
+        
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -269,8 +271,8 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         endRide.hidden = false
         startRide.hidden = true
         
-        location.startUpdatingLocation()
         
+        location.startUpdatingLocation()
         
         
         currentLocation.delegate = self

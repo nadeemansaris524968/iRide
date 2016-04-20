@@ -28,19 +28,12 @@ class RideMapViewController: UIViewController, CLLocationManagerDelegate  {
         manager.desiredAccuracy = kCLLocationAccuracyBest
         
         let latitude = NSString(string: places[activePlace]["startLat"]!).doubleValue
-        
         let longitude = NSString(string: places[activePlace]["startLon"]!).doubleValue
-        
         let coordinate:CLLocationCoordinate2D = CLLocationCoordinate2DMake(latitude, longitude)
-        
         let latDelta:CLLocationDegrees = 0.01
-        
         let lonDelta:CLLocationDegrees = 0.01
-        
         let span:MKCoordinateSpan = MKCoordinateSpanMake(latDelta, lonDelta)
-        
         let region:MKCoordinateRegion = MKCoordinateRegionMake(coordinate, span)
-        
         self.mapView.setRegion(region, animated: true)
         
         let annotation:MKPointAnnotation = MKPointAnnotation()
@@ -51,9 +44,21 @@ class RideMapViewController: UIViewController, CLLocationManagerDelegate  {
         
         annotation.title = places[activePlace]["Start"]
         
-        annotation.subtitle = places[activePlace]["End"]
+        //annotation.subtitle = places[activePlace]["End"]
         
         self.mapView.addAnnotation(annotation)
+        
+        
+        let endLat = NSString(string: places[activePlace]["endLat"]!).doubleValue
+        let endLon = NSString(string: places[activePlace]["endLon"]!).doubleValue
+        let endCoordinate:CLLocationCoordinate2D = CLLocationCoordinate2DMake(endLat, endLon)
+        let endRegion:MKCoordinateRegion = MKCoordinateRegionMake(endCoordinate, span)
+        let endAnnotation:MKPointAnnotation = MKPointAnnotation()
+        endAnnotation.coordinate.latitude = endLat
+        endAnnotation.coordinate.longitude = endLon
+        endAnnotation.title = places[activePlace]["End"]
+        self.mapView.addAnnotation(endAnnotation)
+        
     }
 
     override func didReceiveMemoryWarning() {
