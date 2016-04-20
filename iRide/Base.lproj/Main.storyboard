@@ -371,6 +371,9 @@
                                 <variation key="widthClass=compact" fixedFrame="YES">
                                     <rect key="frame" x="159" y="348" width="59" height="30"/>
                                 </variation>
+                                <connections>
+                                    <action selector="logThisBtn:" destination="VEF-MN-Qbp" eventType="touchUpInside" id="weM-wE-YAD"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12 mph" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gQr-Ms-Hdp">
                                 <rect key="frame" x="206" y="396" width="56" height="21"/>
@@ -449,6 +452,7 @@
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
+                        <outlet property="dateLBL" destination="vS3-pT-AAZ" id="rLh-WL-zFO"/>
                         <outlet property="distanceLBL" destination="mlX-3d-KBd" id="Hck-Ud-Jc9"/>
                         <outlet property="fromLBL" destination="Vza-zX-s5E" id="eQb-6B-Veu"/>
                         <outlet property="menuButton" destination="RZG-ZS-Lko" id="lyT-dW-yWd"/>

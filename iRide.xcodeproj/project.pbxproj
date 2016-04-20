@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4FE6DD7D1CC19CDD00FB28E4 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4FE6DD7B1CC19CDD00FB28E4 /* Model.xcdatamodeld */; };
 		BE55A7BE1CB98BD20088BA1A /* RideLogTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE55A7BD1CB98BD20088BA1A /* RideLogTableViewController.swift */; };
 		BE88A7A31C98A6C700C6B96E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE88A7A11C98A6C700C6B96E /* Main.storyboard */; };
 		BE88A7A71C98AA0200C6B96E /* RideMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE88A7A61C98AA0200C6B96E /* RideMapViewController.swift */; };
@@ -40,6 +41,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4FE6DD7C1CC19CDD00FB28E4 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		BE55A7BD1CB98BD20088BA1A /* RideLogTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RideLogTableViewController.swift; sourceTree = "<group>"; };
 		BE88A7A21C98A6C700C6B96E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = iRide/Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		BE88A7A61C98AA0200C6B96E /* RideMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RideMapViewController.swift; path = ../RideMapViewController.swift; sourceTree = "<group>"; };
@@ -119,6 +121,7 @@
 				BEA3469A1C9869A40039D3D2 /* AppDelegate.swift */,
 				BEA3469C1C9869A40039D3D2 /* ViewController.swift */,
 				BEA346CF1C987A5D0039D3D2 /* RideInfoViewController.swift */,
+				4FE6DD7B1CC19CDD00FB28E4 /* Model.xcdatamodeld */,
 				BE88A7A61C98AA0200C6B96E /* RideMapViewController.swift */,
 				BEA346A11C9869A40039D3D2 /* Assets.xcassets */,
 				BEA346A31C9869A40039D3D2 /* LaunchScreen.storyboard */,
@@ -291,6 +294,7 @@
 				BE55A7BE1CB98BD20088BA1A /* RideLogTableViewController.swift in Sources */,
 				BEA3469D1C9869A40039D3D2 /* ViewController.swift in Sources */,
 				BE88A7A71C98AA0200C6B96E /* RideMapViewController.swift in Sources */,
+				4FE6DD7D1CC19CDD00FB28E4 /* Model.xcdatamodeld in Sources */,
 				BEA3469B1C9869A40039D3D2 /* AppDelegate.swift in Sources */,
 				BEA346D01C987A5D0039D3D2 /* RideInfoViewController.swift in Sources */,
 				BEA346CE1C986E2C0039D3D2 /* SWRevealViewController.m in Sources */,
@@ -554,6 +558,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		4FE6DD7B1CC19CDD00FB28E4 /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				4FE6DD7C1CC19CDD00FB28E4 /* Model.xcdatamodel */,
+			);
+			currentVersion = 4FE6DD7C1CC19CDD00FB28E4 /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = BEA3468F1C9869A40039D3D2 /* Project object */;
 }
