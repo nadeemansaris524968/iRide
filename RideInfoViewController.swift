@@ -13,9 +13,14 @@ class RideInfoViewController: UIViewController {
     
     @IBOutlet weak var menuButton: UIBarButtonItem!
     
-    @IBOutlet weak var fromLBL: UILabel!
+//    @IBOutlet weak var fromLBL: UILabel!
     
-    @IBOutlet weak var toLBL: UILabel!
+    @IBOutlet weak var fromLBL: UITextView!
+    
+//    @IBOutlet weak var toLBL: UILabel!
+    
+    
+    @IBOutlet weak var toLBL: UITextView!
 
     @IBOutlet weak var distanceLBL: UILabel!
     
@@ -25,7 +30,16 @@ class RideInfoViewController: UIViewController {
     
     @IBOutlet weak var dateLBL: UILabel!
     
+    @IBOutlet weak var logThisBtn: UIButton!
+    
     @IBAction func logThisBtn(sender: UIButton) {
+        
+        let uiAlertController:UIAlertController = UIAlertController(title: "Ride Info",
+            message: "Your ride has been logged!", preferredStyle: UIAlertControllerStyle.Alert)
+        
+        uiAlertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Cancel,
+            handler:{(action:UIAlertAction)->Void in  }))
+        self.presentViewController(uiAlertController, animated: true, completion: nil)
         
         let appDel:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         
@@ -48,11 +62,7 @@ class RideInfoViewController: UIViewController {
             // Handle error stored in *error* here
         }
         
-        
-        
 
-        
-        
     }
 //       @IBAction func logThisBTN(sender: AnyObject) {
 //        let title = "iRide"
@@ -75,28 +85,69 @@ class RideInfoViewController: UIViewController {
             self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         }
         
-        fromLBL.text = "\(places.last!["Start"]!)"
-        
-        toLBL.text = "\(places.last!["End"]!)"
-        
-        distanceLBL.text = String(format: "%1.2f miles", distanceBetweenCoordinates*0.000621371)
-        
-        speedLBL.text = String(format: "%1.2f mph", Double(places.last!["avgSpeed"]!)!)
-        
-        if Double(places.last!["rideTime"]!)! > 60 {
-            time.text = String(format: "%2.0f min %2.0f sec", (Double(places.last!["rideTime"]!)!)/60, (Double(places.last!["rideTime"]!)!) - 60)
-        }
-        
-        else if Double(places.last!["rideTime"]!)! > 3600 {
-            time.text = String(format:"%2.0f hr", (Double(places.last!["rideTime"]!)!)/3600)
+        if activePlace == -1 {
+            fromLBL.text = "\(places.last!["Start"]!)"
+            toLBL.text = "\(places.last!["End"]!)"
+            
+            dateLBL.text = "21 April 2016"
+            
+            distanceLBL.text = String(format: "%1.2f miles", Double(places.last!["dist"]!)!)
+            speedLBL.text = String(format: "%1.2f mph", Double(places.last!["avgSpeed"]!)!)
+            
+            if Double(places.last!["rideTime"]!)! > 60 {
+                        time.text = String(format: "%2.0f min %2.0f sec", (Double(places.last!["rideTime"]!)!)/60, (Double(places.last!["rideTime"]!)!) - 60)
+                    }
+            
+                    else if Double(places.last!["rideTime"]!)! > 3600 {
+                        time.text = String(format:"%2.0f hr", (Double(places.last!["rideTime"]!)!)/3600)
+                    }
+                    
+                    else {
+                        time.text = String(format: "%2.0f sec", Double(places.last!["rideTime"]!)!)
+                    }
+            
+            if logThisBtn.hidden {
+                logThisBtn.hidden = false
+            }
+            
         }
         
         else {
-            time.text = String(format: "%2.0f sec", Double(places.last!["rideTime"]!)!)
+            
+                    fromLBL.text = "\(places[activePlace]["Start"]!)"
+            
+                    toLBL.text = "\(places[activePlace]["End"]!)"
+            
+                    distanceLBL.text = String(format: "%1.2f miles", Double(places[activePlace]["dist"]!)!)
+            
+                    speedLBL.text = String(format: "%1.2f mph", Double(places[activePlace]["avgSpeed"]!)!)
+            
+                    dateLBL.text = "21 April 2016"
+            
+                    if Double(places.last!["rideTime"]!)! > 60 {
+                        time.text = String(format: "%2.0f min %2.0f sec", (Double(places[activePlace]["rideTime"]!)!)/60, (Double(places[activePlace]["rideTime"]!)!) - 60)
+                    }
+            
+                    else if Double(places.last!["rideTime"]!)! > 3600 {
+                        time.text = String(format:"%2.0f hr", (Double(places[activePlace]["rideTime"]!)!)/3600)
+                    }
+                    
+                    else {
+                        time.text = String(format: "%2.0f sec", Double(places[activePlace]["rideTime"]!)!)
+                    }
+            
+//            if logThisBtn.hidden {
+//                logThisBtn.hidden = false
+//            }
+            
+            logThisBtn.hidden = true
+            
         }
         
         
-        
+    }
+    
+    override func viewWillAppear(animated: Bool) {
         
     }
 

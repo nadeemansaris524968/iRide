@@ -54,9 +54,7 @@ class RideLogTableViewController: UITableViewController {
                 avgspeed = result.valueForKey("avgspeed") as! String
                 date = result.valueForKey("date") as! String
                 
-               
-                
-                
+
             }
             
             print("\(fromLoc + " " + toLoc + " " + distance + " " + timeTaken + " " + avgspeed + " " + date)")
@@ -104,7 +102,8 @@ class RideLogTableViewController: UITableViewController {
         //cell.textLabel?.text = rides[indexPath.row].startLocation
         //cell.detailTextLabel?.text = rides[indexPath.row].endLocation
 
-        cell.textLabel?.text = "\(fromLoc + " - " + toLoc)"
+//        cell.textLabel?.text = "\(fromLoc + " - " + toLoc)"
+        cell.textLabel?.text = "\(places[indexPath.row]["Start"]!) - \(places[indexPath.row]["End"]!)"
         cell.detailTextLabel?.text = date
         
         return cell

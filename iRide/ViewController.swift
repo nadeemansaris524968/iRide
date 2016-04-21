@@ -279,6 +279,8 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         
         timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: Selector("increaseTimer"), userInfo: nil, repeats: true)
         
+        pauseRide.hidden = false
+        
 //        rides.removeFirst()
     }
     
@@ -421,6 +423,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
 //            print("Average speed: \(avgSpeed/Double(locationCounter))")
             
             self.viewRideInfoBTN.hidden = false
+            self.pauseRide.hidden = true
         })
         
         //
