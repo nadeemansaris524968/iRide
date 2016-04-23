@@ -48,7 +48,7 @@
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="startRide:" destination="BYZ-38-t0r" eventType="touchUpInside" id="abV-8w-qe3"/>
+                                    <action selector="startRideBTN:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Tjn-Ze-ZTR"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yDf-hE-UlB">
@@ -63,28 +63,15 @@
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="layer.maskToBounds" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="pauseRide:" destination="BYZ-38-t0r" eventType="touchUpInside" id="fTT-G5-NfL"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bA1-jp-v6H">
-                                <rect key="frame" x="140" y="546" width="95" height="30"/>
-                                <color key="backgroundColor" red="0.91764712329999998" green="0.70588237050000002" blue="0.270588249" alpha="1" colorSpace="deviceRGB"/>
-                                <state key="normal" title="Continue">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="continueRide:" destination="BYZ-38-t0r" eventType="touchUpInside" id="DRU-cW-jHR"/>
+                                    <action selector="pauseRideBTN:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ERk-v6-Awg"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CCG-1m-Jj2">
-                                <rect key="frame" x="140" y="502" width="95" height="30"/>
+                                <rect key="frame" x="140" y="434" width="95" height="30"/>
                                 <color key="backgroundColor" red="1" green="0.18479061250000001" blue="0.1090841169" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="End Ride">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
-                                <connections>
-                                    <action selector="endRide:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0CJ-t5-jID"/>
-                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FHU-mI-tSE">
                                 <rect key="frame" x="140" y="592" width="95" height="31"/>
@@ -97,9 +84,15 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="viewRideInfoBTN:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1is-qT-2ds"/>
-                                    <segue destination="Yzm-QZ-91r" kind="custom" customClass="SWRevealViewControllerSeguePushController" id="jH5-e6-mdY"/>
+                                    <segue destination="Yzm-QZ-91r" kind="custom" customClass="SWRevealViewControllerSeguePushController" id="Rci-oN-Cez"/>
                                 </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bA1-jp-v6H">
+                                <rect key="frame" x="240" y="546" width="95" height="30"/>
+                                <color key="backgroundColor" red="0.91764712329999998" green="0.70588237050000002" blue="0.270588249" alpha="1" colorSpace="deviceRGB"/>
+                                <state key="normal" title="Continue">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -133,13 +126,10 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
-                        <outlet property="continueRide" destination="bA1-jp-v6H" id="vsk-0h-Lb6"/>
-                        <outlet property="currentLocation" destination="6go-vn-vTq" id="7Tl-Wj-7XN"/>
-                        <outlet property="destinationLocation" destination="6go-vn-vTq" id="dbD-1t-ncb"/>
-                        <outlet property="endRide" destination="CCG-1m-Jj2" id="XWi-an-dEH"/>
-                        <outlet property="pauseRide" destination="yDf-hE-UlB" id="0Zr-1B-Jrs"/>
-                        <outlet property="slideOutMenuButton" destination="7cc-7s-OFS" id="dwB-2L-7iw"/>
-                        <outlet property="startRide" destination="pOH-oB-hTe" id="TNe-u9-YuO"/>
+                        <outlet property="map" destination="6go-vn-vTq" id="LjY-97-XBF"/>
+                        <outlet property="pauseRideBTN" destination="yDf-hE-UlB" id="MZm-mt-oNH"/>
+                        <outlet property="slideOutMenuBTN" destination="7cc-7s-OFS" id="311-rq-oT4"/>
+                        <outlet property="startRideBTN" destination="pOH-oB-hTe" id="ll5-r1-2J5"/>
                         <outlet property="viewRideInfoBTN" destination="FHU-mI-tSE" id="VSr-co-7mN"/>
                     </connections>
                 </viewController>
@@ -570,7 +560,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="4r4-Kw-ryP"/>
         <segue reference="imo-2b-xSz"/>
+        <segue reference="Rci-oN-Cez"/>
     </inferredMetricsTieBreakers>
 </document>

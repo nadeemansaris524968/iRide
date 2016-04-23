@@ -11,14 +11,12 @@ import MapKit
 import CoreLocation
 import AddressBookUI
 
-var rides = [Ride(StartLocation: "", EndLocation: "")]
 
 var ride:Ride = Ride(StartLocation: "", EndLocation: "")
 
 var distanceBetweenCoordinates:Double = 0.0
 
-var from:CLLocation!
-var to:CLLocation!
+
 
 var allLocations:[CLLocation] = []
 var allLocationsIndex:Int = 0
@@ -42,44 +40,41 @@ var myPausedLocationsIndex:Int = 0
 
 class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate{
     
+    //For polyLine() which draws on map
+    var from:CLLocation!
+    var to:CLLocation!
+    
+    //For storing the first latitude and longitude coordinates of the user
     var startLocationLatitude:CLLocationDegrees!
     var startLocationLongitude:CLLocationDegrees!
     
+    //For storing the last latitude and longitude coordinates of the user from the current ride
     var endLocationLatitude:CLLocationDegrees!
     var endLocationLongitude:CLLocationDegrees!
+
     
-    var pausedLocationLatitude:CLLocationDegrees!
-    var pausedLocationLongitude:CLLocationDegrees!
-    
-    
+    //Location manager for the map
     var location = CLLocationManager()
     
-    
+    //Using this to store and update each location in updateLocation()
     var destination = CLLocationCoordinate2DMake(0, 0)
     
+    //Using this to store the last location after ride has ended. Used by endRideBTN()
     var endDestination:CLLocation!
     
     
-    
-    var pinCounter:Int = 0
-    
     @IBOutlet weak var viewRideInfoBTN: UIButton!
     
-    @IBAction func viewRideInfoBTN(sender: UIButton) {
-        
-    }
-    
-    
-    @IBOutlet weak var currentLocation: MKMapView!
-    
-    @IBOutlet weak var destinationLocation: MKMapView!
+    @IBOutlet weak var map: MKMapView!
     
     @IBOutlet weak var endRide: UIButton!
    
-    @IBOutlet weak var startRide: UIButton!
+    @IBOutlet weak var startRideBTN: UIButton!
+
     
-    @IBOutlet weak var pauseRide: UIButton!
+
     
+    @IBOutlet weak var pauseRideBTN: UIButton!
     
     ///////////////////////////////////////////////////--------------------VIEW DID LOAD--------------------///////////////////////////////////////////////////
     
@@ -88,9 +83,9 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         
         if self.revealViewController() != nil {
             
-            slideOutMenuButton.target = self.revealViewController()
+            slideOutMenuBTN.target = self.revealViewController()
             
-            slideOutMenuButton.action = "revealToggle:"
+            slideOutMenuBTN.action = "revealToggle:"
             
             self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
             
@@ -98,9 +93,9 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         
         super.viewDidLoad()
     
-        continueRide.hidden = true
+        //continueRide.hidden = true
         
-        endRide.hidden = true
+        //endRide.hidden = true
         
         if places.count == 1 {
             places.removeFirst()
@@ -121,7 +116,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         
         location.requestWhenInUseAuthorization()
         
-        currentLocation.showsUserLocation = true
+        map.showsUserLocation = true
         
         
         
@@ -138,25 +133,23 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     
     ///////////////////////////////////////////////////--------------------PAUSE RIDE--------------------///////////////////////////////////////////////////
     
-    @IBAction func pauseRide(sender: UIButton) {
-        
-        //pinCounter++
+    @IBAction func pauseRideBTN(sender: UIButton) {
         
         timer.invalidate()
-      
+        
         let pauseDropPin = MKPointAnnotation()
         pauseDropPin.coordinate = destination
         pauseDropPin.title = " "
         pauseDropPin.subtitle = " "
-        currentLocation.addAnnotation(pauseDropPin)
+        map.addAnnotation(pauseDropPin)
         
         //print("Pin no. \(pinCounter)")
         location.stopUpdatingLocation()
-        currentLocation.showsUserLocation = false
-        pauseRide.hidden = true
+        map.showsUserLocation = false
+        pauseRideBTN.hidden = true
         continueRide.hidden = false
         
-                
+        
         
         let geoCoder = CLGeocoder()
         let newLocation = CLLocation(latitude: destination.latitude, longitude: destination.longitude)
@@ -221,10 +214,8 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
                 //myPausedLocationsIndex++
                 
         }
-        
-       
-        
     }
+
     
     @IBOutlet weak var continueRide: UIButton!
     
@@ -233,8 +224,8 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     @IBAction func continueRide(sender: UIButton) {
         
         location.startUpdatingLocation()
-        currentLocation.showsUserLocation = true
-        pauseRide.hidden = false
+        map.showsUserLocation = true
+        pauseRideBTN.hidden = false
         continueRide.hidden = true
         
         timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: Selector("increaseTimer"), userInfo: nil, repeats: true)
@@ -249,15 +240,15 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
             
         case 0:
             
-            currentLocation.mapType = .Standard
+            map.mapType = .Standard
             
         case 1:
             
-            currentLocation.mapType = .Satellite
+            map.mapType = .Satellite
             
         default: // or case 2
             
-            currentLocation.mapType = .Hybrid
+            map.mapType = .Hybrid
             
         }
         
@@ -266,23 +257,24 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     
     ///////////////////////////////////////////////////--------------------START RIDE--------------------///////////////////////////////////////////////////
     
-    @IBAction func startRide(sender: UIButton) {
-        
+    @IBAction func startRideBTN(sender: UIButton) {
         endRide.hidden = false
-        startRide.hidden = true
+        startRideBTN.hidden = true
         
         
         location.startUpdatingLocation()
         
         
-        currentLocation.delegate = self
+        map.delegate = self
         
         timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: Selector("increaseTimer"), userInfo: nil, repeats: true)
         
-        pauseRide.hidden = false
+        pauseRideBTN.hidden = false
         
-//        rides.removeFirst()
+        //        rides.removeFirst()
     }
+
+
     
     func increaseTimer () {
         time++
@@ -365,9 +357,9 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         
         
         location.stopUpdatingLocation()
-        currentLocation.showsUserLocation = false
+        map.showsUserLocation = false
 
-        currentLocation.addAnnotation(endRideDropPin)
+        map.addAnnotation(endRideDropPin)
         
         let optionMenu = UIAlertController(title: nil, message: "Choose Option", preferredStyle: .Alert)
         
@@ -384,7 +376,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
             
             print("End Ride location \(ride.endLocation)")
             
-            rides.append(ride)
+            //rides.append(ride)
             
 //            for var eachRide in rides {
 //                print("Start location: \(eachRide.startLocation) \n End location: \(eachRide.endLocation)")
@@ -423,7 +415,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
 //            print("Average speed: \(avgSpeed/Double(locationCounter))")
             
             self.viewRideInfoBTN.hidden = false
-            self.pauseRide.hidden = true
+            self.pauseRideBTN.hidden = true
         })
         
         //
@@ -442,7 +434,8 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         self.presentViewController(optionMenu, animated: true, completion: nil)
     }
     
-    @IBOutlet weak var slideOutMenuButton: UIBarButtonItem!
+    @IBOutlet weak var slideOutMenuBTN: UIBarButtonItem!
+
     
     
 
@@ -522,7 +515,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
                     startRidePin.title = title
                     startRidePin.subtitle = subTitle
                     
-                    self.currentLocation.addAnnotation(startRidePin)
+                    self.map.addAnnotation(startRidePin)
                     
                 }
             })
@@ -537,7 +530,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         
         let startRegion = MKCoordinateRegion(center: startPoint, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
 
-        self.currentLocation.setRegion(startRegion, animated: true)
+        self.map.setRegion(startRegion, animated: true)
 
         if (myLocations.count > 1){
             
@@ -555,7 +548,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
             
             let polyline = MKPolyline(coordinates: &a, count: a.count)
             
-            currentLocation.addOverlay(polyline)
+            map.addOverlay(polyline)
             
             print("C1: \(c1) C2: \(c2)")
             
